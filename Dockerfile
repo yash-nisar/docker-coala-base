@@ -16,8 +16,6 @@ RUN mkdir -p /root/.local/share/coala && \
 
 # Add packaged flawfinder
 RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openSUSE_Tumbleweed/home:illuusio.repo && \
-  # Use Leap for nodejs
-  zypper addrepo http://download.opensuse.org/repositories/devel:languages:nodejs/openSUSE_Leap_42.2/devel:languages:nodejs.repo && \
   # Remove unnecessary repos to avoid refreshes
   zypper removerepo 'NON-OSS' && \
   # Package dependencies
@@ -49,8 +47,10 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libopenssl-devel \
     # pcre needed by Julia runtime
     libpcre2-8-0 \
+    libxml2-devel \
     # libxml2-tools provides xmllint
     libxml2-tools \
+    libxslt-devel \
     # needed for licensecheck
     devscripts \
     # linux-glibc-devel needed for Ruby native extensions
@@ -59,7 +59,7 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     lua-devel \
     luarocks \
     m4 \
-    nodejs \
+    nodejs6 \
     npm \
     # patch is used by Ruby gem pg_query
     patch \
@@ -100,7 +100,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     kbd \
     iproute2 \
     kmod \
-    libasan3 \
     libICE6 \
     libnl-config \
     libthai-data \
@@ -112,7 +111,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     libXmu6 \
     libXmuu1 \
     libXrender1 \
-    libxslt-tools \
     libXss1 libXt6 \
     lksctp-tools \
     logrotate \
@@ -128,8 +126,6 @@ RUN zypper addrepo http://download.opensuse.org/repositories/home:illuusio/openS
     postfix \
     php7-zlib \
     python-curses \
-    python-javapackages \
-    python-pyxb \
     python-rpm-macros \
     python-xml \
     R-core-doc \
